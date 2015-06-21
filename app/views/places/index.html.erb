@@ -1,1 +1,11 @@
-<h1>Placeholder text for index.html.erb</h1>
+<% @places.each do |p| %>
+	
+	<div>
+		<h1><%= p.name %></h1> <br />
+		<i><%= p.address %></i> <br />
+		<p><%= p.description %></p> <br />
+	</div>
+
+	<hr />
+
+<% end %>
