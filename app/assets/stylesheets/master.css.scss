@@ -14,3 +14,17 @@ h1,h2,h3,h4 {
 	padding: 0;
 	margin: 0;
 }
+
+body{
+	background: url('/assets/background.png');
+
+	font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif !important;
+
+}
+
+.navbar.navbar-inverse {
+	background: url('/assets/dark_embroidery.png');
+	border-radius: 0;
+	box-shadow: 0px 5px 8px #524F4F;
+}
+
