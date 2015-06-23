@@ -1,6 +1,4 @@
 <% @places.each do |p| %>
-	
-	
 	<div class="booyah-box col-xs-10 col-xs-offset-1">
 		<h1><%= p.name %></h1>
 		<i><%= p.address %></i> <br /> <br />
@@ -9,12 +7,5 @@
 		<% if p.user.present? %>
 			<small><%= p.user.email %></small>
 		<% end %>
-
-
 	</div>
-	
-
-
-
-	
 <% end %>
