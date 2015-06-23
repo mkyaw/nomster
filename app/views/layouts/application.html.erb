@@ -34,15 +34,22 @@
 	        	</li>
 	        </div>
 	      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-	        	<div class="navigation-links">
-		        	<li><a href="#">Link</a></li>
-	        	</div>
-		      </ul>
 	      
+	      <ul class="nav navbar-nav navbar-right">
+        	<div class="navigation-links">
+	        	<li><a href="#">Link</a></li>
+        	</div>
+	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+
+	<% if notice.present? %>
+		<p class="alert alert-info"><%= notice %></p>
+	<% end %>
+	<% if alert.present? %>
+		<p class="alert alert-danger"><%= alert %></p>
+	<% end %>
 
 <%= yield %>
 
