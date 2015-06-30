@@ -33,17 +33,24 @@
 
 	<br />
 
+	<div class="pull-right">
+		<% if current_user && current_user == @place.user %>
+			<%= link_to "Edit", edit_place_path(@place), :class => "btn btn-primary" %>
+		<%= link_to "Delete", place_path(@place), :method => :delete, :data => {:confirm => "Are you sure you want to delete this place?"}, :class => "btn btn-danger" %>
+		<% end %>
+	</div>
+
 	<div class="clear"></div>
 		<%= simple_form_for @comment, :url => place_comments_path(@place) do |f| %>
 
 			<%= f.input :message %>
-			<%= f.input :rating %><br />
+			<%= f.input :rating, :as => :select, :collection => Comment::RATINGS %><br />
 			<%= f.submit "Add a Comment", :class => "btn btn-primary" %>
 
 		<% end %>
 	
 
-<<<<<<< HEAD
+
 	<br />
 	<br />
 
@@ -52,7 +59,10 @@
 	<% @place.comments.each do |comment| %>
 		<div>
 			<blockquote>
-				<b><%= comment.rating %></b> - <%= comment.message %>
+				<% if comment.human_rating.present?%>
+					<b><%= comment.human_rating %></b>
+				<% end %>
+				- <%= comment.message %>
 				<small><%= comment.user.email %></small>
 			</blockquote>
 		</div>
@@ -61,12 +71,6 @@
 
 
 
-=======
->>>>>>> 470f5710d823db3ffe258773812d388ce4e79a2d
-	<div class="pull-right">
-		<% if current_user && current_user == @place.user %>
-			<%= link_to "Edit", edit_place_path(@place), :class => "btn btn-primary" %>
-		<%= link_to "Delete", place_path(@place), :method => :delete, :data => {:confirm => "Are you sure you want to delete this place?"}, :class => "btn btn-danger" %>
-		<% end %>
-	</div>
+
+	
 </div>
