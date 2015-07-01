@@ -7,5 +7,18 @@
 		<% if p.user.present? %>
 			<small><%= p.user.email %></small>
 		<% end %>
+
+		<% if p.comments.present? %>
+			<div class="col-xs-12">
+				<blockquote>
+					<% if p.comments.last.human_rating.present?%>
+						<b><%= p.comments.last.human_rating %></b>
+					<% end %>
+					- <%= p.comments.last.message %>
+					<small><%= p.comments.last.user.email %></small>
+				</blockquote>
+			</div>
+		<% end %>
+
 	</div>
 <% end %>
