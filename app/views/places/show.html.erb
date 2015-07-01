@@ -41,65 +41,7 @@
 	</div>	
 
 	
-	<!--**********PHOTOS**********-->
-
-	<div class="clear"></div>
-
-	<br />
-	<br />
-	
-	<div class="col-xs-10 col-xs-offset-1">
-		<h1 class="pull-left">Photos</h1>
-	
-	
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#myModal">
-		  Upload Photo
-		</button>
-	</div>
-
-	<div class="clear"></div>
-
-	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Upload Photo!</h4>
-	      </div>
-	      <div class="modal-body">
-	        <%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
-			  <%= f.input :caption %>
-			  <br />
-			  
-			
-
-			<br />
-
-
-	        
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <%= f.submit "Upload Photo", :class => 'btn btn-primary' %>
-	      </div>
-	      <% end %>
-	    </div>
-	  </div>
-	</div>
-
-	<% @place.photos.each do |photo| %>
-				<div>
-					<blockquote>
-						<i><%= photo.caption %></i>
-					</blockquote>
-				</div>
-			<% end %>
-
-
-
-	<!--**********COMMENTS**********-->
+	<!--**********COMMENTS - START**********-->
 
 	<div class="clear"></div>
 	
@@ -163,8 +105,64 @@
 
 	<% end %>
 
+	<!--**********COMMENTS - END**********-->
 
+	<!--**********PHOTOS - START**********-->
 
+	<div class="clear"></div>
 
+	<br />
+	<br />
 	
+	<div class="col-xs-10 col-xs-offset-1">
+		<h1 class="pull-left">Photos</h1>
+	
+	
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#myModal2">
+		  Upload Photo
+		</button>
+	</div>
+
+	<div class="clear"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel2">Upload Photo!</h4>
+	      </div>
+  			
+  			<div class="modal-body">
+	        <%= simple_form_for @photo, :url => place_photos_path(@place) do |f| %>
+			  <%= f.input :caption %>
+			  <%= f.input :picture %>
+			  <br />
+			<br />
+
+			</div>
+	      
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <%= f.submit "Upload Photo", :class => 'btn btn-primary' %>
+	      </div>
+	      
+	      <% end %>
+	    </div>
+	  </div>
+	</div>
+
+	<% @place.photos.each do |photo| %>
+		<div>
+			<blockquote>
+				<%= image_tag photo.picture %>
+				<i><%= photo.caption %></i>
+			</blockquote>
+		</div>
+	<% end %>
+
+	<!--**********PHOTOS - END**********-->
 </div>

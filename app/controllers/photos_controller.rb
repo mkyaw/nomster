@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
 	# parameters set for photos that permit 
 	# only message and rating
 	def pht_params
-		params.require(:photo).permit(:caption)
+		params.require(:photo).permit(:caption, :picture)
 	end
 
 end
