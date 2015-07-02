@@ -83,3 +83,8 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+.photosize img{
+  max-width:60%;
+  height:auto;
+}
