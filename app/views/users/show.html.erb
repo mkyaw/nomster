@@ -16,18 +16,24 @@
 <br /><br />
 <h1 class="text-center"><strong>My Comments</strong></h1>
 <br /><br />
-<% @user.comments.each do |comment| %>
-	<div class="col-xs-12 col-sm-6 booyah-box by-box2">
-		<br /><br />
-		<h2 class="text-center"><%= link_to comment.place.name, place_path(comment.place) %></h2>
-		<br /><br />
-		<blockquote>
-			<% if comment.human_rating.present?%>
-				<b><%= comment.human_rating %></b>
-			<% end %>
-			- <%= comment.message %>
-			<small><%= comment.user.email %></small>
-		</blockquote>
+<% if @user.comments.present? %>
+	<% @user.comments.each do |comment| %>
+		<div class="col-xs-12 col-sm-6 booyah-box by-box2">
+			<br /><br />
+			<h2 class="text-center"><%= link_to comment.place.name, place_path(comment.place) %></h2>
+			<br /><br />
+			<blockquote>
+				<% if comment.human_rating.present?%>
+					<b><%= comment.human_rating %></b>
+				<% end %>
+				- <%= comment.message %>
+				<small><%= comment.user.email %></small>
+			</blockquote>
+		</div>
+	<% end %>
+<% elsif %>
+	<div class="booyah-box col-xs-10 col-xs-offset-1">
+		You have not commented at any place yet! Click <%= link_to "here", root_path %> to look at the places so that you can add your comments :)
 	</div>
 <% end %>
 
@@ -36,26 +42,32 @@
 <br /><br />
 <h1 class="text-center"><strong>My Places</strong></h1>
 <br /><br />
-<% @user.places.each do |p| %>
-	<div class="booyah-box col-xs-10 col-xs-offset-1">
-		<h1><%= link_to p.name, place_path(p)%></h1><br />
-		<i><%= p.address %></i> <br /> <br />
-		<p><%= p.description %></p> <br />
-	
-		<% if p.user.present? %>
-			<small><%= p.user.email %></small>
-		<% end %>
+<% if @user.places.present? %>
+	<% @user.places.each do |p| %>
+		<div class="booyah-box col-xs-10 col-xs-offset-1">
+			<h1><%= link_to p.name, place_path(p)%></h1><br />
+			<i><%= p.address %></i> <br /> <br />
+			<p><%= p.description %></p> <br />
+		
+			<% if p.user.present? %>
+				<small><%= p.user.email %></small>
+			<% end %>
 
-		<% if p.comments.present? %>
-			<div class="col-xs-12">
-				<blockquote>
-					<% if p.comments.last.human_rating.present?%>
-						<b><%= p.comments.last.human_rating %></b>
-					<% end %>
-					- <%= p.comments.last.message %>
-					<small><%= p.comments.last.user.email %></small>
-				</blockquote>
-			</div>
-		<% end %>
+			<% if p.comments.present? %>
+				<div class="col-xs-12">
+					<blockquote>
+						<% if p.comments.last.human_rating.present?%>
+							<b><%= p.comments.last.human_rating %></b>
+						<% end %>
+						- <%= p.comments.last.message %>
+						<small><%= p.comments.last.user.email %></small>
+					</blockquote>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+<% elsif %>
+	<div class="booyah-box col-xs-10 col-xs-offset-1">
+		You have not added any place yet! Click <%= link_to "here", new_place_path %> to create a new place.
 	</div>
 <% end %>
