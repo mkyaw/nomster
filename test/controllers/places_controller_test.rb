@@ -43,4 +43,33 @@ class PlacesControllerTest < ActionController::TestCase
 		assert_equal 0, user.places.count
 	end
 
+	test "destroy user not authorized" do
+		user = FactoryGirl.create(:user)
+		sign_in user
+
+		place = FactoryGirl.create(:place)
+		delete :destroy, {
+			:id => place.id
+		}
+		assert_response(:forbidden)
+	end
+
+	test "destroy" do
+		user = FactoryGirl.create(:user)
+		sign_in user
+
+		place = FactoryGirl.create(:place, user: user)
+		
+		# Checking the place count by -1
+		assert_difference 'Place.count', -1 do
+			delete :destroy, {
+				:id => place.id
+			}
+		end
+		assert_redirected_to root_path
+		
+		# Check the total number of user's places
+		assert_equal 0, user.places.count
+	end
+
 end
